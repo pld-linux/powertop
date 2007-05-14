@@ -1,0 +1,22 @@
+--- ./Makefile.org	2007-05-14 16:34:33.000000000 +0200
++++ ./Makefile	2007-05-14 16:35:14.000000000 +0200
+@@ -1,13 +1,15 @@
+ BINDIR=/usr/bin
+-
+ WARNFLAGS=-Wall
+ CFLAGS=-O2 -g ${WARNFLAGS}
++CC=gcc
++
+ powertop: powertop.c config.c process.c Makefile powertop.h
+-	gcc ${CFLAGS}  powertop.c config.c process.c -o powertop
++	${CC} ${CFLAGS} powertop.c config.c process.c -o powertop
+ 
+ install: powertop
++	install -d ${DESTDIR}${BINDIR}
+ 	cp powertop ${DESTDIR}${BINDIR}
+ 	
+ clean:
+ 	rm -f *~ powertop
+-		
+\ No newline at end of file
++		
