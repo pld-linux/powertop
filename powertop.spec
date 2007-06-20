@@ -7,8 +7,8 @@ License:	GPL v2
 Group:		Applications
 Source0:	http://www.linuxpowertop.org/download/%{name}-%{version}.tar.gz
 # Source0-md5:	84c012fe5e866b5deb588606a6b9822b
-BuildRequires:	ncurses-devel
 BuildRequires:	gettext-devel
+BuildRequires:	ncurses-devel
 URL:		http://www.linuxpowertop.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
