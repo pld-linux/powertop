@@ -1,12 +1,12 @@
 Summary:	PowerTOP - tool that finds the software component(s) that make your laptop use more power
 Summary(pl.UTF-8):	PowerTOP - narzędzie wykrywające programy zwiększające pobór energii laptopa
 Name:		powertop
-Version:	1.11
-Release:	2
+Version:	1.13
+Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://www.lesswatts.org/projects/powertop/download/%{name}-%{version}.tar.gz
-# Source0-md5:	3498f5983c683c3a57dce7379a722082
+# Source0-md5:	78aa17c8f55178004223bf236654298e
 BuildRequires:	gettext-devel
 BuildRequires:	ncurses-devel
 URL:		http://www.lesswatts.org/projects/powertop/
@@ -44,7 +44,7 @@ problem.
 
 %build
 %{__make} \
-	CFLAGS="%{rpmcflags} -I/usr/include/ncurses" \
+	CFLAGS="%{rpmcflags} -Wall -I/usr/include/ncurses -D VERSION=\\\"%{version}\\\"" \
 	CC="%{__cc}"
 
 %install
@@ -52,8 +52,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{zh,zh_TW}
 
 %find_lang %{name}
 
@@ -63,5 +61,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc Changelog README
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
+%attr(755,root,root) %{_bindir}/powertop
+%{_mandir}/man8/*
