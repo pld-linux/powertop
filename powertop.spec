@@ -1,15 +1,17 @@
 Summary:	PowerTOP - tool that finds the software component(s) that make your laptop use more power
 Summary(pl.UTF-8):	PowerTOP - narzędzie wykrywające programy zwiększające pobór energii laptopa
 Name:		powertop
-Version:	1.13
-Release:	2
+Version:	2.0
+Release:	1
 License:	GPL v2
 Group:		Applications
-Source0:	http://www.lesswatts.org/projects/powertop/download/%{name}-%{version}.tar.gz
-# Source0-md5:	78aa17c8f55178004223bf236654298e
-BuildRequires:	gettext-devel
+Source0:	https://01.org/powertop/sites/default/files/downloads/%{name}-%{version}.tar.bz2
+# Source0-md5:	8f27e2b0bf1c68b1f5a9a98294238bb2
+URL:		https://01.org/powertop/
+BuildRequires:	libnl-devel
 BuildRequires:	ncurses-devel
-URL:		http://www.lesswatts.org/projects/powertop/
+BuildRequires:	pciutils-devel
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,12 +42,12 @@ jak dobrze system się sprawuje i które komponenty stanowią największy
 problem.
 
 %prep
-%setup -q 
+%setup -q
 
 %build
-%{__make} \
-	CFLAGS="%{rpmcflags} -Wall -I/usr/include/ncurses -D VERSION=\\\"%{version}\\\"" \
-	CC="%{__cc}"
+%configure \
+	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -53,13 +55,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%doc Changelog README
-%attr(755,root,root) %{_bindir}/powertop
-%{_mandir}/man8/*
+%doc TODO
+%attr(755,root,root) %{_sbindir}/powertop
