@@ -1,17 +1,18 @@
 Summary:	PowerTOP - tool that finds the software component(s) that make your laptop use more power
 Summary(pl.UTF-8):	PowerTOP - narzędzie wykrywające programy zwiększające pobór energii laptopa
 Name:		powertop
-Version:	2.0
+Version:	2.1
 Release:	1
 License:	GPL v2
 Group:		Applications
-Source0:	https://01.org/powertop/sites/default/files/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	8f27e2b0bf1c68b1f5a9a98294238bb2
+Source0:	https://01.org/powertop/sites/default/files/downloads/%{name}-%{version}.tar.gz
+# Source0-md5:	069b6b81d1bdddcc350797b1d87484c3
 URL:		https://01.org/powertop/
+BuildRequires:	gettext-devel
 BuildRequires:	libnl-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	pciutils-devel
-BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,7 +47,8 @@ problem.
 
 %build
 %configure \
-	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
+	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses" \
+	--disable-silent-rules
 %{__make}
 
 %install
@@ -55,10 +57,13 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc TODO
+%doc README TODO
 %attr(755,root,root) %{_sbindir}/powertop
+%{_mandir}/man8/powertop.8*
