@@ -2,7 +2,7 @@ Summary:	PowerTOP - tool that finds the software component(s) that make your lap
 Summary(pl.UTF-8):	PowerTOP - narzędzie wykrywające programy zwiększające pobór energii laptopa
 Name:		powertop
 Version:	2.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications
 Source0:	https://01.org/powertop/sites/default/files/downloads/%{name}-%{version}.tar.gz
