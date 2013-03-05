@@ -53,9 +53,11 @@ problem.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT/var/cache/powertop
+touch $RPM_BUILD_ROOT/var/cache/powertop/saved_parameters.powertop
 
 # fix locales names
 mv $RPM_BUILD_ROOT%{_localedir}/cs{_CZ,}
@@ -75,3 +77,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc README TODO
 %attr(755,root,root) %{_sbindir}/powertop
 %{_mandir}/man8/powertop.8*
+%dir /var/cache/powertop
+%ghost /var/cache/powertop/saved_parameters.powertop
