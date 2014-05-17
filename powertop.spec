@@ -1,16 +1,19 @@
 Summary:	PowerTOP - tool that finds the software component(s) that make your laptop use more power
 Summary(pl.UTF-8):	PowerTOP - narzędzie wykrywające programy zwiększające pobór energii laptopa
 Name:		powertop
-Version:	2.5
+Version:	2.6
 Release:	1
 License:	GPL v2
 Group:		Applications
-Source0:	https://01.org/powertop/sites/default/files/downloads/%{name}-%{version}.tar.gz
-# Source0-md5:	806bbcbd44fcea1f807c9582fc1f7d3e
+Source0:	https://01.org/sites/default/files/downloads/powertop/%{name}-%{version}.tar.gz
+# Source0-md5:	502453dcc32c3db8188a83e9df1a5b51
 URL:		https://01.org/powertop/
-BuildRequires:	gettext-devel
+BuildRequires:	autoconf >= 2.68
+BuildRequires:	automake
+BuildRequires:	gettext-devel >= 0.18
 BuildRequires:	libnl-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pciutils-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -43,9 +46,15 @@ jak dobrze system się sprawuje i które komponenty stanowią największy
 problem.
 
 %prep
-%setup -q
+%setup -q -n %{name}
 
 %build
+%{__gettextize}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses" \
 	--disable-silent-rules
