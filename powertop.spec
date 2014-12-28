@@ -10,7 +10,7 @@ Source0:	https://01.org/sites/default/files/downloads/powertop/%{name}-%{version
 URL:		https://01.org/powertop/
 BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake
-BuildRequires:	gettext-devel >= 0.18
+BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	libnl-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
