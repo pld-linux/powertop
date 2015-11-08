@@ -9,13 +9,14 @@ Source0:	https://01.org/sites/default/files/downloads/powertop/%{name}-%{version
 # Source0-md5:	c55fedb69203e480801b18bd7b886241
 URL:		https://01.org/powertop/
 BuildRequires:	autoconf >= 2.68
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	libnl-devel
-BuildRequires:	libstdc++-devel
+BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pciutils-devel
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,7 +52,7 @@ problem.
 %build
 %{__gettextize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -69,12 +70,12 @@ install -d $RPM_BUILD_ROOT/var/cache/powertop
 touch $RPM_BUILD_ROOT/var/cache/powertop/saved_parameters.powertop
 
 # fix locales names
-mv $RPM_BUILD_ROOT%{_localedir}/cs{_CZ,}
-mv $RPM_BUILD_ROOT%{_localedir}/de{_DE,}
-mv $RPM_BUILD_ROOT%{_localedir}/es{_ES,}
-mv $RPM_BUILD_ROOT%{_localedir}/hu{_HU,}
-mv $RPM_BUILD_ROOT%{_localedir}/id{_ID,}
-mv $RPM_BUILD_ROOT%{_localedir}/nl{_NL,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/cs{_CZ,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/de{_DE,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/es{_ES,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/hu{_HU,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/id{_ID,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/nl{_NL,}
 
 %find_lang %{name}
 
