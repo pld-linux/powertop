@@ -1,16 +1,16 @@
 Summary:	PowerTOP - tool that finds the software component(s) that make your laptop use more power
 Summary(pl.UTF-8):	PowerTOP - narzędzie wykrywające programy zwiększające pobór energii laptopa
 Name:		powertop
-Version:	2.8
+Version:	2.9
 Release:	1
 License:	GPL v2
 Group:		Applications
-Source0:	https://01.org/sites/default/files/downloads/powertop/%{name}-%{version}.tar.gz
-# Source0-md5:	c55fedb69203e480801b18bd7b886241
+Source0:	https://01.org/sites/default/files/downloads/powertop/%{name}-v%{version}.tar.gz
+# Source0-md5:	583518c5c4434c6e9b9c58c3920950b6
 URL:		https://01.org/powertop/
 BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake >= 1:1.12.2
-BuildRequires:	gettext-tools >= 0.18
+BuildRequires:	gettext-tools >= 0.18.2
 BuildRequires:	libnl-devel
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtool
@@ -47,7 +47,7 @@ jak dobrze system się sprawuje i które komponenty stanowią największy
 problem.
 
 %prep
-%setup -q
+%setup -q -n %{name}-v%{version}
 
 %build
 %{__gettextize}
