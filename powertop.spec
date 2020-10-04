@@ -10,6 +10,7 @@ Source0:	http://github.com/fenrus75/%{name}/archive/v%{version}/%{name}-%{versio
 URL:		https://01.org/powertop/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.12.2
+BuildRequires:	bash-completion >= 2.0
 BuildRequires:	gettext-tools >= 0.20.2
 BuildRequires:	libnl-devel
 BuildRequires:	libstdc++-devel >= 6:4.7
@@ -17,6 +18,7 @@ BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pciutils-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,6 +47,20 @@ zarówno w jądrze, jak i przestrzeni użytkownika. PowerTOP łączy różne
 źródła informacji z jądra w jeden wygodny ekran pozwalający obejrzeć,
 jak dobrze system się sprawuje i które komponenty stanowią największy
 problem.
+
+%package -n bash-completion-powertop
+Summary:	Bash completion for powertop command line
+Summary(pl.UTF-8):	Bashowe dopełnianie linii poleceń programu powertop
+Group:		Applications/Shells
+Requires:	%{name} = %{version}-%{release}
+Requires:	bash-completion >= 2.0
+%{?noarchpackage}
+
+%description -n bash-completion-powertop
+Bash completion for powertop command line.
+
+%description -n bash-completion-powertop -l pl.UTF-8
+Bashowe dopełnianie linii poleceń programu powertop.
 
 %prep
 %setup -q
@@ -92,3 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/powertop.8*
 %dir /var/cache/powertop
 %ghost /var/cache/powertop/saved_parameters.powertop
+
+%files -n bash-completion-powertop
+%defattr(644,root,root,755)
+%{bash_compdir}/powertop
