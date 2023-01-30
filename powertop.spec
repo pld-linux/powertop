@@ -19,6 +19,7 @@ BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	pciutils-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
