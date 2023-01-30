@@ -11,7 +11,7 @@ URL:		https://01.org/powertop/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	autoconf-archive
 BuildRequires:	automake >= 1:1.12.2
-BuildRequires:	bash-completion >= 2.0
+BuildRequires:	bash-completion >= 1:2.0
 BuildRequires:	gettext-tools >= 0.20.2
 BuildRequires:	libnl-devel
 BuildRequires:	libstdc++-devel >= 6:4.7
@@ -55,7 +55,7 @@ Summary:	Bash completion for powertop command line
 Summary(pl.UTF-8):	Bashowe dopełnianie linii poleceń programu powertop
 Group:		Applications/Shells
 Requires:	%{name} = %{version}-%{release}
-Requires:	bash-completion >= 2.0
+Requires:	bash-completion >= 1:2.0
 BuildArch:	noarch
 
 %description -n bash-completion-powertop
