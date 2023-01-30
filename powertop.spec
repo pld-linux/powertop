@@ -5,7 +5,7 @@ Version:	2.15
 Release:	1
 License:	GPL v2
 Group:		Applications
-Source0:	http://github.com/fenrus75/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/fenrus75/powertop/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	a8008e2b16fb648c03faeec3c1047521
 URL:		https://01.org/powertop/
 BuildRequires:	autoconf >= 2.69
